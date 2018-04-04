@@ -11,9 +11,9 @@ namespace CleanArchitecture
         {
            
             IKernel kernel = new StandardKernel(new WeatherModule());
-            var useCase = kernel.Get<GetWeatherUseCase>();
+            var useCase = kernel.Get<GetWeatherInteractor>();
             const string city = "Harare";
-            var weather = useCase.Execute(city);
+            var weather = useCase.Handle(city);
             Console.WriteLine($"Weather for {city}:");
             Console.WriteLine($"Description: {weather.Description}");
             Console.WriteLine($"Min Temp: {weather.MinTemperature}°C");

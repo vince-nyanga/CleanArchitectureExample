@@ -18,32 +18,32 @@ namespace Tests
             MinTemperature = 12
         };
 
-        private GetWeatherUseCase _useCase;
+        private GetWeatherInteractor _interactor;
 
         [OneTimeSetUp]
         public void SetUp()
         {
             var mock = new Mock<IRepository>();
             mock.Setup(repo => repo.GetWeather("Harare")).Returns(_weather);
-            _useCase = new GetWeatherUseCase(mock.Object);
+            _interactor = new GetWeatherInteractor(mock.Object);
         }
 
         [Test]
         public void TestGetWeather_Null()
         {
-            Assert.Throws<ArgumentNullException>(() => _useCase.Execute(null));
+            Assert.Throws<ArgumentNullException>(() => _interactor.Handle(null));
         }
 
         [Test]
         public void TestGetWeather_InvalidParam()
         {
-            Assert.Throws<ArgumentException>(() => _useCase.Execute(1));
+            Assert.Throws<ArgumentNullException>(() => _interactor.Handle(""));
         }
 
         [Test]
         public void TestGetWeather()
         {
-            var result = _useCase.Execute("Harare");
+            var result = _interactor.Handle("Harare");
             Assert.NotNull(result);
             Assert.AreEqual(result.MaxTemperature, _weather.MaxTemperature);
             Assert.AreEqual(result.MinTemperature, _weather.MinTemperature);

@@ -19,7 +19,7 @@ namespace CleanArchitecture.Modules
             Bind<IMapper<WeatherData, WeatherEntity>>().To<WeatherDataEntityMapper>();
             Bind<IApi>().To<OpenWeatherApi>().WithConstructorArgument("apiKey",apiKey);
             Bind<IRepository>().To<WeatherRepository>();
-            Bind<GetWeatherUseCase>().ToSelf().InSingletonScope();
+            Bind<GetWeatherInteractor>().ToSelf().InSingletonScope();
         }
     }
 }
