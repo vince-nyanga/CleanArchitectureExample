@@ -1,15 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CleanArchitecture.Modules;
+using Domain.UseCases;
+using Ninject;
 
 namespace CleanArchitecture
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+           
+            IKernel kernel = new StandardKernel(new WeatherModule());
+            var useCase = kernel.Get<GetWeatherUseCase>();
+            const string city = "Harare";
+            var weather = useCase.Execute(city);
+            Console.WriteLine($"Weather for {city}:");
+            Console.WriteLine($"Description: {weather.Description}");
+            Console.WriteLine($"Min Temp: {weather.MinTemperature}°C");
+            Console.WriteLine($"Max Temp: {weather.MaxTemperature}°C");
+            Console.ReadLine();
+
         }
     }
 }
