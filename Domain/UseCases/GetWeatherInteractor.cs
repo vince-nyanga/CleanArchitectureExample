@@ -21,7 +21,7 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(data));
             }
 
-            return _repository.GetWeather((string) data);
+            return _repository.GetWeather(data);
         }
     }
 }
