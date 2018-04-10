@@ -10,13 +10,8 @@ namespace Tests
     [TestFixture]
     public class UseCaseTests
     {
+
        
-        private readonly WeatherEntity _weather = new WeatherEntity
-        {
-            Description = "Cloudy",
-            MaxTemperature = 25,
-            MinTemperature = 12
-        };
 
         private GetWeatherInteractor _interactor;
 
@@ -24,7 +19,7 @@ namespace Tests
         public void SetUp()
         {
             var mock = new Mock<IRepository>();
-            mock.Setup(repo => repo.GetWeather("Harare")).Returns(_weather);
+            mock.Setup(repo => repo.GetWeather("Harare")).Returns(TestUtils.TestWeatherEntity);
             _interactor = new GetWeatherInteractor(mock.Object);
         }
 
@@ -45,9 +40,9 @@ namespace Tests
         {
             var result = _interactor.Handle("Harare");
             Assert.NotNull(result);
-            Assert.AreEqual(result.MaxTemperature, _weather.MaxTemperature);
-            Assert.AreEqual(result.MinTemperature, _weather.MinTemperature);
-            Assert.AreEqual(result.Description, _weather.Description);
+            Assert.AreEqual(TestUtils.TestWeatherEntity.MaxTemperature, result.MaxTemperature);
+            Assert.AreEqual(TestUtils.TestWeatherEntity.MinTemperature, result.MinTemperature);
+            Assert.AreEqual(TestUtils.TestWeatherEntity.Description, result.Description);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Data.Repository
 
         public WeatherEntity GetWeather(string cityName)
         {
-            if (cityName == null)
+            if (string.IsNullOrEmpty(cityName))
             {
                 throw new System.ArgumentNullException(nameof(cityName));
             }

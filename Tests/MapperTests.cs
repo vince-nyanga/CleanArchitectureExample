@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Data.Entities;
-using Data.Mappers;
+﻿using Data.Mappers;
 using NUnit.Framework;
 
 namespace Tests
@@ -11,21 +9,7 @@ namespace Tests
         [Test]
         public void TestWeatherDataEntityMapper()
         {
-            var data = new WeatherData
-            {
-                Main = new Main
-                {
-                    MaxTemperature = 25,
-                    MinTemperature = 12
-                },
-                WeatherList = new List<Weather>()
-                {
-                    new Weather
-                    {
-                        Description = "Cloudy"
-                    }
-                }
-            };
+            var data = TestUtils.TestWeatherData;
 
             var mapper = new WeatherDataEntityMapper();
             var entity = mapper.MapFrom(data);
