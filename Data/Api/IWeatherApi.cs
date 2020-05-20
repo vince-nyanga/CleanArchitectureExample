@@ -2,7 +2,7 @@
 
 namespace Data.Api
 {
-    public interface IApi
+    public interface IWeatherApi
     {
         WeatherData GetWeatherData(string city);
     }

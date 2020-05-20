@@ -17,7 +17,7 @@ namespace CleanArchitecture.Modules
         {
             var apiKey = ConfigurationManager.AppSettings["API_KEY"];
             Bind<IMapper<WeatherData, WeatherEntity>>().To<WeatherDataEntityMapper>();
-            Bind<IApi>().To<OpenWeatherApi>().WithConstructorArgument("apiKey",apiKey);
+            Bind<IWeatherApi>().To<OpenWeatherApi>().WithConstructorArgument("apiKey",apiKey);
             Bind<IRepository>().To<WeatherRepository>();
             Bind<GetWeatherInteractor>().ToSelf().InSingletonScope();
         }

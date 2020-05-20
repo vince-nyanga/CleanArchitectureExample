@@ -17,7 +17,7 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            var mockApi = new Mock<IApi>();
+            var mockApi = new Mock<IWeatherApi>();
             mockApi.Setup(api => api.GetWeatherData("Harare")).Returns(TestUtils.TestWeatherData);
             _repository = new WeatherRepository(mockApi.Object, new WeatherDataEntityMapper());
 
