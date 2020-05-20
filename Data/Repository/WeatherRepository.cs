@@ -1,4 +1,5 @@
-﻿using Data.Api;
+﻿using System;
+using Data.Api;
 using Data.Entities;
 using Domain.Entities;
 using Domain.Mappers;
@@ -8,13 +9,13 @@ namespace Data.Repository
 {
     public class WeatherRepository: IRepository
     {
-        private readonly IApi _api;
+        private readonly IWeatherApi _api;
         private readonly IMapper<WeatherData, WeatherEntity> _mapper;
 
-        public WeatherRepository(IApi api,IMapper<WeatherData, WeatherEntity> mapper)
+        public WeatherRepository(IWeatherApi api,IMapper<WeatherData, WeatherEntity> mapper)
         {
-            _api = api ?? throw new System.ArgumentNullException(nameof(api));
-            _mapper = mapper ?? throw new System.ArgumentNullException(nameof(mapper));
+            _api = api ?? throw new ArgumentNullException(nameof(api));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
 
@@ -22,7 +23,7 @@ namespace Data.Repository
         {
             if (string.IsNullOrEmpty(cityName))
             {
-                throw new System.ArgumentNullException(nameof(cityName));
+                throw new ArgumentNullException(nameof(cityName));
             }
 
             return _mapper.MapFrom(_api.GetWeatherData(cityName));

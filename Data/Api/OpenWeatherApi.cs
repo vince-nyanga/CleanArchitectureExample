@@ -6,7 +6,7 @@ using RestSharp;
 
 namespace Data.Api
 {
-    public class OpenWeatherApi: IApi
+    public class OpenWeatherApi: IWeatherApi
     {
         private readonly RestClient _client = new RestClient("http://api.openweathermap.org/data/2.5/weather");
         private readonly string _apiKey;
